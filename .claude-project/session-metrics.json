@@ -1,10 +1,10 @@
 {
-  "tokens_input": 21327,
-  "tokens_output": 44168,
-  "tokens_total": 65495,
+  "tokens_input": 40203,
+  "tokens_output": 67049,
+  "tokens_total": 107252,
   "cost_usd": 0.0,
-  "tool_calls": 42,
-  "model": "claude-sonnet-5",
-  "messages": 74,
-  "duration_sec": 850
+  "tool_calls": 51,
+  "model": "claude-opus-4-8",
+  "messages": 88,
+  "duration_sec": 443
 }

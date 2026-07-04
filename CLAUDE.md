@@ -169,7 +169,6 @@ Always respond in the user's language.
 
 <!-- DYNAMIC:START -->
 ## Current State
-Session: #2 (active) | Branch: main | Version: 1.5.6
-Tasks: 4/15 done, 1 active, 0 blocked
-Active: ship-movement-controls
+Session: none | Branch: main | Version: 1.5.6
+Tasks: 8/15 done, 0 active, 0 blocked
 <!-- DYNAMIC:END -->

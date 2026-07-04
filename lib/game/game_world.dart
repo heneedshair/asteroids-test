@@ -23,10 +23,21 @@ class GameWorld {
 
   final math.Random _random;
 
-  /// True when a [Ship]↔[Asteroid] overlap was detected during the most recent
-  /// [update]. Reset to `false` at the start of every step. Life loss and
-  /// respawn are handled by a later task (SR-7); this task only *detects* the
-  /// collision (SR-5, AC3).
+  /// Number of lives a fresh game starts with (SR-7, AC1).
+  static const int initialLives = 3;
+
+  /// Lives remaining. A ship↔asteroid hit costs one; it never drops below zero
+  /// (SR-7, AC5 boundary) and reaching zero ends the game.
+  int lives = initialLives;
+
+  /// True once all lives are spent — the game-over state (SR-7, AC3). Derived
+  /// from [lives] so the two can never disagree.
+  bool get isGameOver => lives <= 0;
+
+  /// True when a *damaging* [Ship]↔[Asteroid] overlap was detected during the
+  /// most recent [update] (i.e. one that actually cost a life). Reset to
+  /// `false` at the start of every step; an overlap that hits an invulnerable
+  /// ship does not set it (SR-7, AC4).
   bool shipCollided = false;
 
   /// Invoked once for each asteroid the moment a projectile destroys it, with
@@ -41,6 +52,10 @@ class GameWorld {
   ///
   /// Called zero or more times per rendered frame by the game loop.
   void update(double dt) {
+    // Once the game is over the simulation freezes (SR-7, AC3): no movement,
+    // no collisions, no spawns until the world is restarted.
+    if (isGameOver) return;
+
     for (final entity in entities) {
       if (entity.alive) {
         entity.update(dt, bounds);
@@ -86,14 +101,16 @@ class GameWorld {
       }
     }
 
-    // Ship↔asteroid is detection-only here (SR-5, AC3). A dead asteroid (just
-    // fragmented) no longer counts.
+    // Ship↔asteroid costs a life and respawns the ship (SR-7). A dead asteroid
+    // (just fragmented) no longer counts, and an invulnerable ship shrugs the
+    // hit off entirely (AC4 negative).
     shipCollided = false;
     for (final ship in entities.whereType<Ship>()) {
-      if (!ship.alive) continue;
+      if (!ship.alive || ship.isInvulnerable) continue;
       for (final asteroid in asteroids) {
         if (asteroid.alive && circlesOverlap(ship, asteroid)) {
           shipCollided = true;
+          _handleShipHit(ship);
           break;
         }
       }
@@ -101,6 +118,19 @@ class GameWorld {
     }
 
     entities.addAll(fragments);
+  }
+
+  /// Applies one asteroid hit to [ship]: spends a life (never below zero — AC5)
+  /// and either respawns the ship at the play-field centre with invulnerability
+  /// (AC1/AC2) or, if that was the last life, retires the ship so the game-over
+  /// state (AC3) takes hold.
+  void _handleShipHit(Ship ship) {
+    if (lives > 0) lives--;
+    if (lives > 0) {
+      ship.respawn(Offset(bounds.width / 2, bounds.height / 2));
+    } else {
+      ship.alive = false;
+    }
   }
 
   /// Lets every live [Ship] attempt a shot, capped at [Ship.maxProjectiles]

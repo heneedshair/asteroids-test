@@ -2,6 +2,7 @@ import 'package:flutter/rendering.dart';
 
 import 'game_controller.dart';
 import 'game_world.dart';
+import 'ship.dart';
 
 /// Renders the [GameWorld] using the controller's interpolation [alpha].
 ///
@@ -27,6 +28,12 @@ class GamePainter extends CustomPainter {
       ..strokeWidth = 2.0;
 
     for (final entity in _world.entities) {
+      // A freshly respawned, invulnerable ship blinks (~5 Hz) as visible
+      // feedback for the invulnerability window (SR-7, AC2).
+      if (entity is Ship && entity.isInvulnerable) {
+        if ((entity.invulnerabilityRemaining * 10).floor().isOdd) continue;
+      }
+
       final p = entity.renderPosition(alpha);
       final a = entity.renderAngle(alpha);
 

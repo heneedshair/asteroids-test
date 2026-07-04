@@ -31,6 +31,7 @@ class Ship extends Entity {
     this.maxSpeed = 400.0,
     this.projectileSpeed = 500.0,
     this.maxProjectiles = 4,
+    this.respawnInvulnerability = 2.0,
     super.velocity,
     super.angle = -math.pi / 2,
     super.radius = 14.0,
@@ -66,6 +67,30 @@ class Ship extends Entity {
   /// Maximum number of this ship's projectiles allowed alive at once.
   final int maxProjectiles;
 
+  /// How many seconds the ship stays invulnerable after a respawn (SR-7, AC2).
+  final double respawnInvulnerability;
+
+  /// Seconds of invulnerability still remaining. Counts down every step; while
+  /// positive the ship ignores asteroid hits (SR-7, AC4 negative).
+  double invulnerabilityRemaining = 0.0;
+
+  /// Whether the ship is currently shielded from asteroid collisions.
+  bool get isInvulnerable => invulnerabilityRemaining > 0;
+
+  /// Resets the ship to [center] at rest, facing the default heading, and
+  /// starts the post-respawn invulnerability window (SR-7, AC1/AC2). Snapshots
+  /// the interpolation state too so the renderer does not streak from the old
+  /// position to the centre.
+  void respawn(Offset center) {
+    position = center;
+    prevPosition = center;
+    velocity = Offset.zero;
+    angle = -math.pi / 2;
+    prevAngle = angle;
+    angularVelocity = 0.0;
+    invulnerabilityRemaining = respawnInvulnerability;
+  }
+
   /// Fires a projectile from the ship's nose along its current heading, its
   /// velocity summed with the ship's own — provided [activeProjectileCount]
   /// (how many ship-owned projectiles are already alive, across the whole
@@ -90,6 +115,12 @@ class Ship extends Entity {
 
   @override
   void update(double dt, Size bounds) {
+    // Bleed off any remaining invulnerability first (SR-7, AC2). Set on the
+    // respawn step, so it starts counting down the following step.
+    if (invulnerabilityRemaining > 0) {
+      invulnerabilityRemaining = math.max(0.0, invulnerabilityRemaining - dt);
+    }
+
     final state = input?.state ?? InputState.idle;
 
     // Turning: derived fresh each step. No input → angularVelocity == 0, and
