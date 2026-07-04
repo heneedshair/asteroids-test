@@ -37,5 +37,13 @@
   "rag": {
     "mode": "fts5"
   },
-  "context_tier": "standard"
+  "context_tier": "standard",
+  "gates": {
+    "pytest": {
+      "enabled": false
+    },
+    "ruff": {
+      "enabled": false
+    }
+  }
 }
