@@ -84,12 +84,14 @@ class _GameScreenState extends State<GameScreen>
     _controller.start();
   }
 
-  /// Adds a fresh ship at the centre plus an opening asteroid wave. Shared by
-  /// the initial seed and by [_restart].
+  /// Adds a fresh ship at the centre plus the opening wave. Shared by the
+  /// initial seed and by [_restart]. Uses [GameWorld.startNextWave] so the
+  /// first wave (wave 1: 4 rocks at base speed) and every later one clear and
+  /// re-seed through the same progression path.
   void _populate(Size size) {
     final centre = Offset(size.width / 2, size.height / 2);
     _controller.world.entities.add(Ship(position: centre, input: _input));
-    _controller.world.spawnWave(4, shipPosition: centre);
+    _controller.world.startNextWave(shipPosition: centre);
   }
 
   /// Resets the world after game over (SR-7, AC3): clears the field, restores
@@ -100,6 +102,7 @@ class _GameScreenState extends State<GameScreen>
     world.lives = GameWorld.initialLives;
     world.shipCollided = false;
     world.score = 0;
+    world.wave = 0;
     _scoreSubmitted = false;
     _populate(world.bounds);
   }

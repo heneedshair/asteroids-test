@@ -39,6 +39,24 @@ class GameWorld {
   /// zero when a fresh game is seeded/restarted.
   int score = 0;
 
+  /// Number of the wave currently on the field (SPEC-PROC-1). 0 before the
+  /// first wave is seeded; [startNextWave] bumps it. Wave N carries
+  /// [waveAsteroidCount] large rocks drifting at [waveSpeedScale]× base speed.
+  int wave = 0;
+
+  /// Fractional growth of base drift speed per wave (AC2). Wave 1 drifts at
+  /// each asteroid's base speed; every later wave is this much faster,
+  /// compounded — e.g. 0.15 = +15% per wave.
+  static const double waveSpeedGrowth = 0.15;
+
+  /// Large-asteroid count seeded by wave [n]: 4 on wave 1, +1 per wave (AC1).
+  static int waveAsteroidCount(int n) => 4 + (n - 1);
+
+  /// Drift-speed multiplier for wave [n]: (1+[waveSpeedGrowth])^(n-1) (AC2).
+  /// Wave 1 = 1.0 (base speed); each subsequent wave compounds the growth.
+  static double waveSpeedScale(int n) =>
+      math.pow(1 + waveSpeedGrowth, n - 1).toDouble();
+
   /// True when a *damaging* [Ship]↔[Asteroid] overlap was detected during the
   /// most recent [update] (i.e. one that actually cost a life). Reset to
   /// `false` at the start of every step; an overlap that hits an invulnerable
@@ -73,6 +91,27 @@ class GameWorld {
     _resolveCollisions();
     _spawnProjectiles();
     entities.removeWhere((e) => !e.alive);
+    _maybeAdvanceWave();
+  }
+
+  /// Starts the next wave the instant the field is cleared (AC1). No-op before
+  /// the first wave is seeded (wave 0) or while any asteroid/fragment still
+  /// drifts — that empty-field guard is the AC3 negative: the wave counter
+  /// never advances on a non-empty field.
+  void _maybeAdvanceWave() {
+    if (wave == 0) return;
+    if (entities.whereType<Asteroid>().isNotEmpty) return;
+
+    Ship? ship;
+    for (final entity in entities) {
+      if (entity is Ship && entity.alive) {
+        ship = entity;
+        break;
+      }
+    }
+    final origin =
+        ship?.position ?? Offset(bounds.width / 2, bounds.height / 2);
+    startNextWave(shipPosition: origin);
   }
 
   /// Detects circular-bound collisions (SR-5) and resolves fragmentation
@@ -161,21 +200,39 @@ class GameWorld {
     }
   }
 
+  /// Advances to the next wave (AC1/AC2): bumps [wave], then seeds its large
+  /// asteroids at the scaled drift speed. The caller (or [_maybeAdvanceWave])
+  /// is responsible for only invoking this on a cleared field.
+  void startNextWave({required Offset shipPosition, double safeRadius = 150.0}) {
+    wave++;
+    spawnWave(
+      waveAsteroidCount(wave),
+      shipPosition: shipPosition,
+      safeRadius: safeRadius,
+      speedScale: waveSpeedScale(wave),
+    );
+  }
+
   /// Spawns a wave of [count] large asteroids at the screen edges, each at
   /// least [safeRadius] pixels from [shipPosition] so the wave never appears
   /// on top of the player (SPEC-PROC-1: "у краёв, вне безопасного радиуса").
   ///
-  /// Each asteroid drifts in a random direction at its size's base speed.
+  /// Each asteroid drifts in a random direction at its size's base speed times
+  /// [speedScale] (1.0 = base; higher waves pass a >1 scale — AC2).
   /// Rejection-samples an edge point until one clears the safe zone; after a
   /// bounded number of tries it falls back to the farthest candidate so the
   /// spawn always terminates even on a tiny play-field.
-  void spawnWave(int count, {required Offset shipPosition, double safeRadius = 150.0}) {
+  void spawnWave(int count,
+      {required Offset shipPosition,
+      double safeRadius = 150.0,
+      double speedScale = 1.0}) {
     for (var i = 0; i < count; i++) {
-      entities.add(_spawnLargeAsteroid(shipPosition, safeRadius));
+      entities.add(_spawnLargeAsteroid(shipPosition, safeRadius, speedScale));
     }
   }
 
-  Asteroid _spawnLargeAsteroid(Offset shipPosition, double safeRadius) {
+  Asteroid _spawnLargeAsteroid(
+      Offset shipPosition, double safeRadius, double speedScale) {
     const maxTries = 16;
     var best = _randomEdgePoint();
     var bestDistSq = (best - shipPosition).distanceSquared;
@@ -195,7 +252,8 @@ class GameWorld {
       position: best,
       size: AsteroidSize.large,
       velocity: Offset(math.cos(heading), math.sin(heading)) *
-          AsteroidSize.large.speed,
+          AsteroidSize.large.speed *
+          speedScale,
     );
   }
 
