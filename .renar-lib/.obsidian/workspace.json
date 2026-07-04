@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "guide/00-quickstart.md",
+                "file": "guide/01-walkthrough.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00-quickstart"
+              "title": "01-walkthrough"
             }
           }
         ]
@@ -185,6 +185,10 @@
   },
   "active": "0f0f2c3b433fdfcb",
   "lastOpenFiles": [
+    "guide/08-developer-guide.md",
+    "guide/README.md",
+    "guide/11-ai-agent-guide.md",
+    "guide/00-quickstart.md",
     "README.ru.md",
     "docs/RENAR-v1.0-draft-ru-guide.pdf",
     "docs/RENAR-v1.0-draft-ru-reference.pdf",
@@ -192,7 +196,6 @@
     "docs/README.md",
     "RENAR-AGENT-RU.md",
     "RENAR-AGENT-EN.md",
-    "guide/README.md",
     "standard/en/README.md",
     "standard/03-terms.md"
   ]

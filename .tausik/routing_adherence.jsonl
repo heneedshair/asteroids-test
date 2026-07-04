@@ -1,0 +1,2 @@
+{"schema_version": 1, "slug": "asteroids-renar", "recommended": "claude-sonnet-4-6", "actual": "claude-opus-4-8", "recommended_family": "sonnet", "actual_family": "opus", "match": false, "recorded_at": "2026-07-04T13:58:27Z"}
+{"schema_version": 1, "slug": "asteroids", "recommended": "claude-sonnet-4-6", "actual": "claude-opus-4-8", "recommended_family": "sonnet", "actual_family": "opus", "match": false, "recorded_at": "2026-07-04T14:25:49Z"}

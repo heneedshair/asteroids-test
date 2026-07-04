@@ -1,0 +1,10 @@
+{
+  "tokens_input": 32417,
+  "tokens_output": 129702,
+  "tokens_total": 162119,
+  "cost_usd": 0.0,
+  "tool_calls": 63,
+  "model": "claude-opus-4-8",
+  "messages": 137,
+  "duration_sec": 2906
+}
