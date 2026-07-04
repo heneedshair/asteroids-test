@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../game/game_controller.dart';
 import '../game/game_world.dart';
+import '../game/highscore_store.dart';
 import '../game/ship.dart';
 import '../input/composite_input_adapter.dart';
 import '../input/input_command.dart';
@@ -34,13 +35,40 @@ class _GameScreenState extends State<GameScreen>
       CompositeInputAdapter([_keyboard, _touch]);
   final FocusNode _focusNode = FocusNode();
 
+  /// Owns the persisted best score; displayed in the game-over overlay and
+  /// updated once per game when the run ends (SR-6).
+  final HighscoreService _highscore =
+      HighscoreService(const SharedPrefsHighscoreStore());
+
   bool _seeded = false;
+
+  /// Guards the once-per-game high-score submit: the controller notifies every
+  /// frame, but the current run's score must be offered to storage only once
+  /// when the game first enters the game-over state.
+  bool _scoreSubmitted = false;
 
   @override
   void initState() {
     super.initState();
     _controller = GameController(vsync: this);
+    _controller.addListener(_onFrame);
     WidgetsBinding.instance.addObserver(this);
+    // Best-effort: pull the stored record so the overlay can show it. A failure
+    // degrades to "no record yet" inside the service; refresh the UI on load.
+    _highscore.load().then((_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  /// Per-frame hook driven by the controller. Submits the final score to the
+  /// high-score store exactly once, the moment the game ends.
+  void _onFrame() {
+    if (_controller.world.isGameOver && !_scoreSubmitted) {
+      _scoreSubmitted = true;
+      _highscore.submit(_controller.world.score).then((_) {
+        if (mounted) setState(() {});
+      });
+    }
   }
 
   /// Spawns the player ship centred in the play field and an opening wave of
@@ -71,6 +99,8 @@ class _GameScreenState extends State<GameScreen>
     world.entities.clear();
     world.lives = GameWorld.initialLives;
     world.shipCollided = false;
+    world.score = 0;
+    _scoreSubmitted = false;
     _populate(world.bounds);
   }
 
@@ -106,6 +136,7 @@ class _GameScreenState extends State<GameScreen>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _controller.removeListener(_onFrame);
     _controller.dispose();
     _keyboard.dispose();
     _touch.dispose();
@@ -150,6 +181,7 @@ class _GameScreenState extends State<GameScreen>
                     listenable: _controller,
                     builder: (context, _) => _Hud(
                       world: _controller.world,
+                      highscore: _highscore.best,
                       onRestart: _restart,
                     ),
                   ),
@@ -166,9 +198,16 @@ class _GameScreenState extends State<GameScreen>
 /// The overlay layer: a lives counter that always shows and, once the game is
 /// over, a full-screen "GAME OVER" panel that restarts on tap (SR-7, AC3).
 class _Hud extends StatelessWidget {
-  const _Hud({required this.world, required this.onRestart});
+  const _Hud({
+    required this.world,
+    required this.highscore,
+    required this.onRestart,
+  });
 
   final GameWorld world;
+
+  /// Best score persisted across launches (SR-6). `0` until it loads.
+  final int highscore;
   final VoidCallback onRestart;
 
   @override
@@ -181,14 +220,13 @@ class _Hud extends StatelessWidget {
           top: 16,
           left: 16,
           child: IgnorePointer(
-            child: Text(
-              'LIVES  ${world.lives}',
-              style: const TextStyle(
-                color: Color(0xFF7CF6FF),
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 2,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('SCORE  ${world.score}', style: _hudTextStyle),
+                const SizedBox(height: 4),
+                Text('LIVES  ${world.lives}', style: _hudTextStyle),
+              ],
             ),
           ),
         ),
@@ -201,8 +239,8 @@ class _Hud extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'GAME OVER',
                       style: TextStyle(
                         color: Color(0xFF7CF6FF),
@@ -211,8 +249,26 @@ class _Hud extends StatelessWidget {
                         letterSpacing: 4,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
+                      'SCORE  ${world.score}',
+                      style: const TextStyle(
+                        color: Color(0xFFE8ECF2),
+                        fontSize: 22,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'BEST  $highscore',
+                      style: const TextStyle(
+                        color: Color(0xFFB9C0CC),
+                        fontSize: 18,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
                       'Tap to restart',
                       style: TextStyle(color: Color(0xFFB9C0CC), fontSize: 18),
                     ),
@@ -224,4 +280,11 @@ class _Hud extends StatelessWidget {
       ],
     );
   }
+
+  static const TextStyle _hudTextStyle = TextStyle(
+    color: Color(0xFF7CF6FF),
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 2,
+  );
 }

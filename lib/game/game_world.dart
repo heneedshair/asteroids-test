@@ -34,6 +34,11 @@ class GameWorld {
   /// from [lives] so the two can never disagree.
   bool get isGameOver => lives <= 0;
 
+  /// Points scored this game (SR-6). Each destroyed asteroid adds its size's
+  /// [AsteroidSize.points]; a ship↔asteroid collision never scores. Reset to
+  /// zero when a fresh game is seeded/restarted.
+  int score = 0;
+
   /// True when a *damaging* [Ship]↔[Asteroid] overlap was detected during the
   /// most recent [update] (i.e. one that actually cost a life). Reset to
   /// `false` at the start of every step; an overlap that hits an invulnerable
@@ -95,6 +100,11 @@ class GameWorld {
 
         projectile.alive = false;
         asteroid.alive = false;
+        // Scored exactly here — once per destroyed asteroid, since the `alive`
+        // guard above stops a second bullet re-scoring the same rock this step
+        // (SR-6; upholds the "not scored twice" negative). Ship↔asteroid hits
+        // are resolved below and deliberately award nothing.
+        score += asteroid.size.points;
         fragments.addAll(asteroid.split());
         onAsteroidDestroyed?.call(asteroid);
         break; // one projectile destroys exactly one asteroid (SR-4 negative).
