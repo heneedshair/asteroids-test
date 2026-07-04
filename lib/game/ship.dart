@@ -4,6 +4,7 @@ import 'dart:ui';
 import '../input/input_adapter.dart';
 import '../input/input_command.dart';
 import 'entity.dart';
+import 'projectile.dart';
 
 /// The player-controlled ship.
 ///
@@ -28,10 +29,19 @@ class Ship extends Entity {
     this.thrustAccel = 220.0,
     this.friction = 0.0,
     this.maxSpeed = 400.0,
+    this.projectileSpeed = 500.0,
+    this.maxProjectiles = 4,
     super.velocity,
     super.angle = -math.pi / 2,
     super.radius = 14.0,
-  });
+  }) : assert(
+          maxProjectiles > 0,
+          'maxProjectiles must be positive '
+          '(dev-time check only — a release build that somehow constructs '
+          'maxProjectiles <= 0 still fails safe: activeCount >= maxProjectiles '
+          'is then always true, so tryFire permanently returns null instead '
+          'of throwing or firing unbounded).',
+        );
 
   /// Source of player intent. May be null (e.g. in a headless/demo state), in
   /// which case the ship simply coasts on its current velocity.
@@ -49,6 +59,34 @@ class Ship extends Entity {
 
   /// Upper bound on linear speed in pixels per second.
   final double maxSpeed;
+
+  /// Speed added to the ship's own velocity along its heading when firing.
+  final double projectileSpeed;
+
+  /// Maximum number of this ship's projectiles allowed alive at once.
+  final int maxProjectiles;
+
+  /// Fires a projectile from the ship's nose along its current heading, its
+  /// velocity summed with the ship's own — provided [activeProjectileCount]
+  /// (how many ship-owned projectiles are already alive, across the whole
+  /// world — see [GameWorld._spawnProjectiles]) has not reached
+  /// [maxProjectiles] and the "fire" command is currently held.
+  ///
+  /// Returns `null` when either condition fails, so an over-the-limit or
+  /// input-less "fire" is silently ignored (TR-2 negative AC) — no exception,
+  /// no projectile created.
+  Projectile? tryFire(int activeProjectileCount) {
+    final state = input?.state ?? InputState.idle;
+    if (!state.isActive(InputCommand.fire)) return null;
+    if (activeProjectileCount >= maxProjectiles) return null;
+
+    final heading = Offset(math.cos(angle), math.sin(angle));
+    return Projectile(
+      position: position + heading * radius,
+      velocity: velocity + heading * projectileSpeed,
+      owner: ProjectileOwner.ship,
+    );
+  }
 
   @override
   void update(double dt, Size bounds) {
