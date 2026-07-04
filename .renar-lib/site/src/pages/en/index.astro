@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="RENAR — Requirements Engineering Standard for AI-Native Development"
+  description="RENAR is a standalone normative standard for managing requirements (BR/SR/TR), specifications (9 SPEC types), test cases (TC), and ADAPT artifacts. Complements SENAR; works independently."
+>
+  <section class="bg-slate-900 text-white py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-5xl font-extrabold mb-6 tracking-tight">
+        <span class="text-emerald-400">R</span>ENAR
+      </h1>
+      <p class="text-2xl font-light text-slate-200 mb-4">
+        Requirements Engineering & Normative Adaptive Regulation
+      </p>
+      <p class="text-xl text-white max-w-3xl mx-auto mb-4 leading-relaxed">
+        A standalone standard and methodology for requirements engineering in AI-native development.
+      </p>
+      <p class="text-base text-slate-300 max-w-3xl mx-auto mb-10">
+        Complements <a href="https://senar.tech" class="underline hover:text-emerald-300">SENAR</a>; works independently.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/renar-v1.0-draft-en-standard.pdf" class="px-8 py-3 bg-emerald-500 text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition text-lg">
+          Full Standard
+        </a>
+        <a href="/renar-v1.0-draft-en-guide.pdf" class="px-6 py-3 border border-emerald-400 text-emerald-200 rounded-lg hover:bg-slate-800 transition">
+          Practical Guide
+        </a>
+        <a href="/renar-v1.0-draft-en-standard.pdf" class="px-6 py-3 border border-slate-400 text-slate-200 rounded-lg hover:bg-slate-800 transition">
+          Download PDF · Standard
+        </a>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center mt-4 text-sm">
+        <a href="/renar-v1.0-draft-en-guide.pdf" class="text-slate-300 underline hover:text-emerald-300">PDF · Guide</a>
+        <a href="/renar-v1.0-draft-en-reference.pdf" class="text-slate-300 underline hover:text-emerald-300">PDF · Reference</a>
+        <a href="/renar-v1.0-draft-en.pdf" class="text-slate-400 underline hover:text-emerald-300">PDF · Full Archive</a>
+        <a href="/renar-agent-en.md" class="text-emerald-300 underline hover:text-emerald-200">MD · Standard for agent (1 file)</a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 mt-10 text-xs text-slate-400">
+        <div>v1.0-draft &middot; 06.06.2026</div>
+        <div>15 normative chapters &middot; 11 practical guides &middot; 11 references</div>
+        <div>CC BY-SA 4.0</div>
+        <div>EN · RU also available</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">What RENAR Is</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-6">
+        RENAR is a <strong>standalone normative standard and methodology</strong> for managing requirements, specifications, and test cases in projects where implementation is carried out by AI agents. The rules are formulated <strong>independently of any specific storage</strong> (substrate): the same norms apply on version control systems (git, Mercurial, SVN) or on document stores — as long as capabilities V1–V6 are supported.
+      </p>
+      <p class="text-lg text-slate-700 leading-relaxed mb-6">
+        RENAR can be applied <strong>independently</strong> in any organization that needs structured requirements engineering. It is compatible with <a href="https://senar.tech" class="text-emerald-700 underline hover:text-emerald-900">SENAR</a>: both standards share a common quality gate vocabulary and the same five values.
+      </p>
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Its relationship to SENAR is a <em>peer complement</em>, the way ISO 29148 complements ISO/IEC 12207: independent documents that fit together well.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Key Concepts</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">BR → SR → TR Hierarchy</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Three levels: <strong>BR</strong> (business — who, what, why) → <strong>SR</strong> (system — what it does) → <strong>TR</strong> (task — goal and acceptance criteria in the tracker, not a file).
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">ADAPT Artifact</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Two-way adaptation between an <em>immutable TZ</em> and BR/SR/SPEC: forward interpretation + backward findings (7 categories) with a dual signature.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">9 SPEC Types (closed list)</h3>
+          <p class="text-slate-600 leading-relaxed">
+            ARCH / API / DATA / INT / PROC / UI / AI / SEC / OPS — a parallel axis via <code class="text-sm bg-slate-100 px-1 rounded">constrained-by[]</code>. A new type requires a standard amendment.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Test Cases (TC)</h3>
+          <p class="text-slate-600 leading-relaxed">
+            First-class artifacts: paired positive and negative scenarios, UX evaluation via VLM, TC types bound to SPEC; the <code class="text-sm bg-slate-100 px-1 rounded">[test-spec-change]</code> tag guards against tailoring tests to pass.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Substrate Capabilities V1–V6</h3>
+          <p class="text-slate-600 leading-relaxed">
+            <strong>V1</strong> immutable history · <strong>V2</strong> atomic change unit · <strong>V3</strong> diff & review · <strong>V4</strong> branching and drafts · <strong>V5</strong> version pin · <strong>V6</strong> author + timestamp.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">5 RENAR Maturity Levels</h3>
+          <p class="text-slate-600 leading-relaxed">
+            RENAR-1 (Ad-hoc) → RENAR-2 (Documented) → RENAR-3 (Tracked) → RENAR-4 (Verified) → RENAR-5 (Optimized). A dedicated requirements maturity dimension within the SENAR family.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Four Documents</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/renar-v1.0-draft-en-standard.pdf" class="block p-6 bg-white border-2 border-emerald-400 rounded-lg hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Standard</h3>
+          <p class="text-sm text-slate-500 mb-3">Normative specification</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>15 chapters (00–14)</li>
+            <li>MUST / SHOULD / MAY</li>
+            <li>BR/SR/TR + 9 SPEC + V1–V6</li>
+            <li>4 quality gates (QG)</li>
+            <li>RENAR-1..5 maturity</li>
+          </ul>
+        </a>
+        <a href="/renar-v1.0-draft-en-guide.pdf" class="block p-6 bg-white border border-slate-200 rounded-lg hover:border-emerald-400 hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Guide</h3>
+          <p class="text-sm text-slate-500 mb-3">Practical application</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>Quickstart (30 min)</li>
+            <li>End-to-end example</li>
+            <li>Transition from current practice</li>
+            <li>Example library</li>
+            <li>Migration to v1.0-draft</li>
+          </ul>
+        </a>
+        <a href="/renar-v1.0-draft-en-reference.pdf" class="block p-6 bg-white border border-slate-200 rounded-lg hover:border-emerald-400 hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Reference</h3>
+          <p class="text-sm text-slate-500 mb-3">Glossary and schemas</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>Canonical terms</li>
+            <li>JSON schemas for artifacts</li>
+            <li>AI risk register</li>
+            <li>ISO 29148 matrix</li>
+            <li>Conformance self-assessment kit</li>
+          </ul>
+        </a>
+        <a href="/renar-v1.0-draft-en.pdf" class="block p-6 bg-white border border-slate-200 rounded-lg hover:border-emerald-400 hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Core</h3>
+          <p class="text-sm text-slate-500 mb-3">Gentle introduction</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>Single document</li>
+            <li>For first acquaintance</li>
+            <li>Without all the formalities</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Reference Implementation: TAUSIK</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <a href="https://github.com/Kibertum/tausik-core" class="text-emerald-400 underline hover:text-emerald-300">TAUSIK</a>
+        is an open-source framework that applies the SENAR rules (and, when extended, RENAR).
+        RENAR remains a standalone standard; TAUSIK is one of the possible runtime environments, not part of the normative text.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-slate-900 mb-4">Start Wherever Fits</h2>
+      <p class="text-slate-600 mb-10 text-lg">
+        Open the Core for a gentle introduction, or go straight to the full standard if you already know SENAR.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center mb-8">
+        <a href="/renar-v1.0-draft-en.pdf" class="px-8 py-3 bg-emerald-500 text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition text-lg">
+          Start with the Core
+        </a>
+        <a href="/renar-v1.0-draft-en-standard.pdf" class="px-6 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-100 transition">
+          Full Standard
+        </a>
+      </div>
+      <p class="text-xs text-slate-500">
+        RENAR v1.0-draft &middot; CC BY-SA 4.0 &middot; Normative language per <a href="https://www.rfc-editor.org/rfc/rfc2119" class="underline hover:text-slate-700">RFC 2119</a> (EN UPPERCASE keywords, Style Guide §2)
+      </p>
+    </div>
+  </section>
+</Layout>

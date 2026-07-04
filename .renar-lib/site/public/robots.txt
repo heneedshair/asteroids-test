@@ -1,0 +1,51 @@
+# RENAR — renar.tech
+# Корпус стандарта распространяется под лицензией CC BY-SA 4.0.
+# Доступ поисковых и AI-агентов, а также обучение моделей — разрешены явно.
+
+User-agent: *
+Allow: /
+# Content Signals (content-signals.org): search / ai-input / ai-train.
+# CC BY-SA 4.0 → разрешаем все три сигнала явно.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# Явные правила для известных AI-краулеров (зеркалят общий Allow выше).
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://renar.tech/sitemap-index.xml

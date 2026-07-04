@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "descriptive-resource-card",
+  "name": "RENAR",
+  "description": "RENAR — самостоятельный нормативный стандарт инженерии требований для AI-нативной разработки: иерархия BR/SR/TR, артефакт ADAPT, 9 типов SPEC (закрытый список), контрольные примеры (TC), возможности хранилища V1–V6, уровни зрелости RENAR-1..5. Дополняет SENAR.",
+  "url": "https://renar.tech/",
+  "documentationUrl": "https://renar.tech/llms.txt",
+  "version": "1.0-draft",
+  "license": "CC BY-SA 4.0",
+  "provider": {
+    "organization": "Kibertum",
+    "url": "https://renar.tech/"
+  },
+  "authors": [
+    "Vadim Soglaev",
+    "Andrey Yumashev"
+  ],
+  "inLanguage": ["ru", "en"],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "liveAgentEndpoint": false
+  },
+  "agentResources": {
+    "llms": "https://renar.tech/llms.txt",
+    "llmsFull": "https://renar.tech/llms-full.txt",
+    "markdownCorpus": "https://renar.tech/md/",
+    "schemas": "https://renar.tech/docs/reference/02-schemas/",
+    "glossary": "https://renar.tech/docs/reference/01-glossary/",
+    "repository": "https://github.com/Kibertum/RENAR"
+  },
+  "skills": [
+    {
+      "id": "read-corpus",
+      "name": "Чтение корпуса RENAR",
+      "description": "Доступ к нормативному корпусу в markdown через llms.txt / llms-full.txt / зеркало /md/ и content-negotiation на /docs/ (Accept: text/markdown).",
+      "mode": "read-only"
+    }
+  ],
+  "note": "Descriptive resource card — не объявляет живой агентный RPC-endpoint. RENAR — это стандарт, не реализация. Программный (MCP/A2A) доступ к стандарту предоставляет эталонная реализация TAUSIK/KAI, а не этот сайт. См. ADR-010."
+}

@@ -1,0 +1,19 @@
+mkdocs==1.6.1
+mkdocs-material==9.5.49
+mkdocs-static-i18n==1.2.3
+mkdocs-monorepo-plugin==1.1.0
+mike==2.1.3
+# pymdown-extensions 10.12 is incompatible with Markdown 3.8+: its superfences
+# block-processor silently fails to register, so EVERY ```fence renders as inline
+# code / setext text instead of a code block (GitLab #16, and the ```text diagrams
+# behind #12/#15). Markdown is otherwise unpinned and a fresh install pulls 3.10.x,
+# triggering the break. Pin a compatible pair (10.21.3 works with Markdown 3.10).
+markdown==3.10.2
+pymdown-extensions==10.21.3
+
+# PDF export deliberately deferred. Re-enable when planning task
+# `pdf-generate-ru-en` activates:
+#   mkdocs-with-pdf==0.9.3
+# Also bring back apk runtime deps in Dockerfile stage 2:
+#   gcc g++ musl-dev libffi-dev cairo pango gdk-pixbuf
+

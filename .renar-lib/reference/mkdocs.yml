@@ -1,0 +1,19 @@
+# Monorepo subproject — included by site-docs/mkdocs.yml via mkdocs-monorepo-plugin.
+# Nav titles carry the appendix number (NN.) matching the file name (GitLab #14).
+# README is the section index and stays unnumbered.
+site_name: reference
+docs_dir: .
+nav:
+  - Обзор: README.md
+  - "01. Глоссарий": 01-glossary.md
+  - "02. Схемы": 02-schemas.md
+  - "03. Реестр AI-рисков": 03-ai-risk-register.md
+  - "04. Руководство по AI-стилю": 04-ai-style-guide.md
+  - "05. Схема графа знаний": 05-knowledge-graph-schema.md
+  - "06. Руководство по RU-стилю": 06-ru-style-guide.md
+  - "07. ISO 29148 trace matrix": 07-iso29148-trace-matrix.md
+  - "08. Самооценка conformance": 08-conformance-self-assessment.md
+  - "09. Педагогическая плотность": 09-pedagogical-density.md
+  - "10. Профиль реализации для агента": 10-agent-implementation-profile.md
+  - "11. Сопоставление со стандартами": 11-external-standards-mapping.md
+  - "12. Шаблоны документов": 12-document-templates.md

@@ -1,0 +1,128 @@
+site_name: RENAR Documentation
+site_url: https://renar.tech/docs/
+site_description: RENAR — самостоятельный нормативный стандарт инженерии требований для AI-нативной разработки.
+site_author: Вадим Соглаев, Андрей Юмашев
+copyright: CC BY-SA 4.0 · RENAR v1.0-draft
+
+repo_url: https://github.com/Kibertum/RENAR
+repo_name: Kibertum/RENAR
+
+# Monorepo composition: mkdocs.yml at repo-root. Section subdirs
+# (standard/, guide/, reference/, core/) each carry a small mkdocs.yml that
+# declares their nav order. mkdocs-monorepo-plugin pulls them in via !include
+# (sub-projects must live inside the parent dir — hence root placement) and
+# merges into one site tree under /docs/{section}/.
+docs_dir: site-docs/docs
+site_dir: site-docs/build
+
+nav:
+  # External link back to the bilingual landing (GitLab #11). mkdocs renders an
+  # absolute URL as an external nav item, shown on every page via the top nav.
+  - "← renar.tech": https://renar.tech/ru/
+  - Главная: index.md
+  - Стандарт: '!include standard/mkdocs.yml'
+  - Руководство: '!include guide/mkdocs.yml'
+  - Справочник: '!include reference/mkdocs.yml'
+  - Core: '!include core/mkdocs.yml'
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Тёмная тема
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      # /docs/ corpus is RU-only (no /docs/en/ markdown — EN edition ships as PDF
+      # + Astro landing). Indexing a language with no content is superfluous and
+      # can complicate lunr multi-language init; keep search to ru (GitLab #10).
+      lang:
+        - ru
+  - monorepo
+
+hooks:
+  - site-docs/hooks.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Ссылка на раздел
+      toc_depth: 4
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  # superfences + mermaid custom fence: ```mermaid blocks render as inline SVG
+  # via Material's bundled mermaid.js (clean diagrams instead of cramped ASCII,
+  # GitLab #12/#15). Plain ```text fences are untouched.
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.keys
+  # Material icons / emoji shortcodes (:material-*:, :fontawesome-*:) → inline SVG.
+  # Without this, shortcodes render as literal ":material-…:" text (GitLab #13).
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Kibertum/RENAR
+      name: GitHub
+    - icon: fontawesome/solid/globe
+      link: https://senar.tech
+      name: SENAR

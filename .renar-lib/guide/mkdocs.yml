@@ -1,0 +1,19 @@
+# Monorepo subproject — included by site-docs/mkdocs.yml via mkdocs-monorepo-plugin.
+# Nav titles carry the chapter number (NN.) matching the file name (GitLab #14).
+# README is the section index and stays unnumbered.
+site_name: guide
+docs_dir: .
+nav:
+  - Обзор: README.md
+  - "00. Быстрый старт": 00-quickstart.md
+  - "01. Сквозной пример": 01-walkthrough.md
+  - "02. Переход на RENAR": 02-transition-guide.md
+  - "03. Носитель: VCS (git)": 03-tool-guide-git.md
+  - "04. Носитель: document-store (обзор)": 04-document-store-substrate.md
+  - "05. Сравнение с SAFe": 05-safe-comparison.md
+  - "06. Соответствие": 06-compliance.md
+  - "07. Режимы отказа": 07-failure-modes.md
+  - "08. Руководство разработчика": 08-developer-guide.md
+  - "09. Библиотека примеров": 09-worked-examples.md
+  - "10. Миграция на v1.0-draft": 10-migration-v1.md
+  - "11. Работа с ИИ-агентом": 11-ai-agent-guide.md

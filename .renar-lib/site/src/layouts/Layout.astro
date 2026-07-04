@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'RENAR — Стандарт инженерии требований',
+  description = 'RENAR — самостоятельный нормативный стандарт и методология инженерии требований для AI-нативной разработки. Дополняет SENAR; работает независимо.'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://renar.tech');
+
+// i18n: derive the current locale and build hreflang alternates. RU is default.
+const locale = Astro.currentLocale ?? 'ru';
+const path = Astro.url.pathname;
+const ruPath = path.replace(/^\/(ru|en)(\/|$)/, '/ru$2');
+const enPath = path.replace(/^\/(ru|en)(\/|$)/, '/en$2');
+const ruHref = new URL(ruPath, 'https://renar.tech').href;
+const enHref = new URL(enPath, 'https://renar.tech').href;
+const ogLocale = locale === 'en' ? 'en_US' : 'ru_RU';
+
+// JSON-LD structured data — sitewide @graph (Organization + WebSite + TechArticle).
+// Поля берутся из props (title/description/canonical/locale), без хардкода контента.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://renar.tech/#org',
+      name: 'RENAR',
+      url: 'https://renar.tech/',
+      description:
+        'Самостоятельный нормативный стандарт инженерии требований для AI-нативной разработки.',
+      founder: [
+        { '@type': 'Person', name: 'Vadim Soglaev' },
+        { '@type': 'Person', name: 'Andrey Yumashev' },
+      ],
+      sameAs: ['https://github.com/Kibertum/RENAR'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://renar.tech/#website',
+      url: 'https://renar.tech/',
+      name: 'RENAR',
+      inLanguage: ['ru', 'en'],
+      publisher: { '@id': 'https://renar.tech/#org' },
+    },
+    {
+      '@type': 'TechArticle',
+      headline: title,
+      description,
+      url: canonicalURL.href,
+      inLanguage: locale,
+      isPartOf: { '@id': 'https://renar.tech/#website' },
+      author: { '@id': 'https://renar.tech/#org' },
+      license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    },
+  ],
+};
+// Сериализуем безопасно: JSON.stringify экранирует кавычки; дополнительно гасим '<',
+// чтобы значения title/description не могли досрочно закрыть тег <script>.
+const jsonLdHtml = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL.href} />
+  <meta name="robots" content="index, follow" />
+
+  <!-- hreflang alternates (RU default + EN) -->
+  <link rel="alternate" hreflang="ru" href={ruHref} />
+  <link rel="alternate" hreflang="en" href={enHref} />
+  <link rel="alternate" hreflang="x-default" href={ruHref} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL.href} />
+  <meta property="og:site_name" content="RENAR" />
+  <meta property="og:locale" content={ogLocale} />
+  <meta property="og:image" content="https://renar.tech/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://renar.tech/og-image.png" />
+
+  <!-- Markdown-альтернатива для агентов -->
+  <link rel="alternate" type="text/markdown" href="/llms.txt" title="RENAR — индекс для AI-агентов" />
+
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- Structured data (schema.org JSON-LD): Organization + WebSite + TechArticle -->
+  <script type="application/ld+json" is:inline set:html={jsonLdHtml} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <Navbar />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>

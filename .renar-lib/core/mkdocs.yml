@@ -1,0 +1,6 @@
+# Monorepo subproject — included by site-docs/mkdocs.yml via mkdocs-monorepo-plugin.
+site_name: core
+docs_dir: .
+nav:
+  - Обзор: README.md
+  - RENAR Core: renar-core.md

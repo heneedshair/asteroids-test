@@ -1,0 +1,32 @@
+{
+  "name": "renar-standard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:llms-full": "node scripts/build-llms-full.js",
+    "build:docs-md": "node scripts/sync-docs-md.js",
+    "pdf:ru": "node scripts/build-pdf-ru.cjs",
+    "pdf:en": "node scripts/build-pdf-en.cjs",
+    "check:leakage": "node scripts/check-substrate-leakage.js",
+    "check:links": "node scripts/check-md-links.js",
+    "check:site-parity": "node scripts/check-site-parity.js",
+    "check:rfc-modals": "node scripts/check-rfc-modals.js",
+    "check:literary-headings": "node scripts/check-literary-headings.js",
+    "check:site-prose": "node scripts/check-site-russian-prose.js",
+    "check:literary": "node scripts/check-literary-headings.js && node scripts/check-site-russian-prose.js",
+    "check:section-refs": "node scripts/check-section-refs.js",
+    "check:substrate-term": "node scripts/check-substrate-term.js",
+    "check:process-vocab": "node scripts/check-process-vocab.js",
+    "check:capability-names": "node scripts/check-capability-names.js",
+    "check:implements-edge": "node scripts/check-implements-edge.js --self-test",
+    "check:adapt-applicability": "node scripts/check-adapt-applicability.js --self-test",
+    "check:adapt-supersession": "node scripts/check-adapt-supersession.js --self-test",
+    "check:en-parity": "node scripts/check-en-parity.js",
+    "check:all": "node scripts/check-substrate-leakage.js && node scripts/check-md-links.js && node scripts/check-section-refs.js && node scripts/check-substrate-term.js && node scripts/check-process-vocab.js && node scripts/check-capability-names.js && node scripts/style-guide-check.js && node scripts/check-literary-headings.js && node scripts/check-site-russian-prose.js && node scripts/check-research-provenance.js && node scripts/check-implements-edge.js --self-test --quiet && node scripts/check-adapt-applicability.js --self-test --quiet && node scripts/check-adapt-supersession.js --self-test --quiet && node scripts/check-en-parity.js --self-test --quiet && node scripts/check-en-parity.js --quiet && node scripts/check-rfc-modals.js --quiet",
+    "docs:serve": "mkdocs serve",
+    "docs:build": "mkdocs build"
+  },
+  "dependencies": {
+    "md-to-pdf": "^5.2.5"
+  }
+}

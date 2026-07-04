@@ -1,0 +1,73 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "RENAR — read-only corpus access",
+    "description": "Read-only HTTP-доступ к нормативному корпусу RENAR и discovery-ресурсам для AI-агентов. Только статические GET-эндпоинты: без аутентификации, без операций записи, без серверной логики. Цель DNS-AID (_agent.renar.tech, p=openapi).",
+    "version": "1.0-draft",
+    "license": {
+      "name": "CC BY-SA 4.0",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    "contact": {
+      "name": "RENAR",
+      "url": "https://renar.tech/"
+    }
+  },
+  "servers": [
+    { "url": "https://renar.tech" }
+  ],
+  "paths": {
+    "/llms.txt": {
+      "get": {
+        "operationId": "getLlmsIndex",
+        "summary": "Краткий индекс корпуса для AI-агентов (llms.txt)",
+        "responses": {
+          "200": { "description": "OK", "content": { "text/plain": {} } }
+        }
+      }
+    },
+    "/llms-full.txt": {
+      "get": {
+        "operationId": "getLlmsFull",
+        "summary": "Полнотекстовая конкатенация RU-корпуса (llms-full.txt)",
+        "responses": {
+          "200": { "description": "OK", "content": { "text/plain": {} } }
+        }
+      }
+    },
+    "/.well-known/agent.json": {
+      "get": {
+        "operationId": "getAgentCard",
+        "summary": "Descriptive Agent Card (паспорт ресурса)",
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": {} } }
+        }
+      }
+    },
+    "/md/{section}/{chapter}.md": {
+      "get": {
+        "operationId": "getChapterMarkdown",
+        "summary": "Markdown-исходник главы корпуса",
+        "parameters": [
+          {
+            "name": "section",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "enum": ["standard", "guide", "reference", "core"] }
+          },
+          {
+            "name": "chapter",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": "00-introduction"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "text/markdown": {} } },
+          "404": { "description": "Глава не найдена" }
+        }
+      }
+    }
+  }
+}

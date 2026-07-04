@@ -1,0 +1,8 @@
+# check-section-refs.js — 15 chapters indexed, 42 files scanned
+FAIL standard/03-terms.md: bare §3.11.5 → no heading 3.11.5 in chapter 3 (03-terms.md)
+FAIL standard/05-methodology-positioning.md: unresolved anchor #2.5.8 in 02-normative-refs.md
+FAIL standard/05-methodology-positioning.md: bare §2.5.8 → no heading 2.5.8 in chapter 2 (02-normative-refs.md)
+FAIL standard/09-test-cases.md: unresolved anchor #2.5.10 in 02-normative-refs.md
+FAIL standard/09-test-cases.md: bare §2.5.10 → no heading 2.5.10 in chapter 2 (02-normative-refs.md)
+
+Summary: 5 unresolved §-ref(s)/anchor(s)

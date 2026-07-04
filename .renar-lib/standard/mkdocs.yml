@@ -1,0 +1,24 @@
+# Monorepo subproject — included by site-docs/mkdocs.yml via mkdocs-monorepo-plugin.
+# Standalone build not intended; this file just declares this folder's nav.
+# Nav titles carry the chapter number (NN.) matching the file name and the
+# in-page heading "# NN. …" so the sidebar mirrors the canonical numbering
+# (GitLab #14). README is the section index and stays unnumbered.
+site_name: standard
+docs_dir: .
+nav:
+  - Обзор: README.md
+  - "00. Введение": 00-introduction.md
+  - "01. Область применения": 01-scope.md
+  - "02. Положение в типологии методологий": 02-methodology-positioning.md
+  - "03. Версионирование substrate (V1–V6)": 03-substrate-versioning.md
+  - "04. Термины и определения": 04-terms.md
+  - "05. Роли": 05-roles.md
+  - "06. Иерархия требований": 06-requirements-hierarchy.md
+  - "07. ADAPT — двусторонняя адаптация ТЗ": 07-adapt.md
+  - "08. Спецификации (9 типов SPEC)": 08-specifications.md
+  - "09. Тест-кейсы (TC)": 09-test-cases.md
+  - "10. Lifecycle и Quality Gates": 10-lifecycle-qg.md
+  - "11. Модель зрелости": 11-maturity-model.md
+  - "12. Метрики": 12-metrics.md
+  - "13. Соответствие (conformance)": 13-conformance.md
+  - "14. Нормативные ссылки": 14-normative-refs.md

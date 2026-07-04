@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "codebase-rag": {
+      "command": "D:/Work/Kibertum/req-standart/.tausik/venv/Scripts/python.exe",
+      "args": [
+        "D:/Work/Kibertum/req-standart/.claude/mcp/codebase-rag/server.py",
+        "--project",
+        "D:/Work/Kibertum/req-standart"
+      ]
+    },
+    "tausik-project": {
+      "command": "D:/Work/Kibertum/req-standart/.tausik/venv/Scripts/python.exe",
+      "args": [
+        "D:/Work/Kibertum/req-standart/.claude/mcp/project/server.py",
+        "--project",
+        "D:/Work/Kibertum/req-standart"
+      ]
+    },
+    "tausik-brain": {
+      "command": "D:/Work/Kibertum/req-standart/.tausik/venv/Scripts/python.exe",
+      "args": [
+        "D:/Work/Kibertum/req-standart/.claude/mcp/brain/server.py",
+        "--project",
+        "D:/Work/Kibertum/req-standart"
+      ]
+    }
+  }
+}

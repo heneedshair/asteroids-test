@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="RENAR — Стандарт инженерии требований для AI-нативной разработки"
+  description="RENAR — самостоятельный нормативный стандарт управления требованиями (BR/SR/TR), спецификациями (9 типов SPEC), контрольными примерами (TC) и артефактами ADAPT. Дополняет SENAR; работает независимо."
+>
+  <section class="bg-slate-900 text-white py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-5xl font-extrabold mb-6 tracking-tight">
+        <span class="text-emerald-400">R</span>ENAR
+      </h1>
+      <p class="text-2xl font-light text-slate-200 mb-4">
+        Инженерия требований и нормативная адаптивная регуляция
+      </p>
+      <p class="text-xl text-white max-w-3xl mx-auto mb-4 leading-relaxed">
+        Самостоятельный стандарт и методология инженерии требований для AI-нативной разработки.
+      </p>
+      <p class="text-base text-slate-300 max-w-3xl mx-auto mb-10">
+        Дополняет <a href="https://senar.tech" class="underline hover:text-emerald-300">SENAR</a>; работает независимо.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/docs/standard/" class="px-8 py-3 bg-emerald-500 text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition text-lg">
+          Полный стандарт
+        </a>
+        <a href="/docs/guide/" class="px-6 py-3 border border-emerald-400 text-emerald-200 rounded-lg hover:bg-slate-800 transition">
+          Практическое руководство
+        </a>
+        <a href="/renar-v1.0-draft-ru-standard.pdf" class="px-6 py-3 border border-slate-400 text-slate-200 rounded-lg hover:bg-slate-800 transition">
+          Скачать PDF · Стандарт
+        </a>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center mt-4 text-sm">
+        <a href="/renar-v1.0-draft-ru-guide.pdf" class="text-slate-300 underline hover:text-emerald-300">PDF · Руководство</a>
+        <a href="/renar-v1.0-draft-ru-reference.pdf" class="text-slate-300 underline hover:text-emerald-300">PDF · Справочник</a>
+        <a href="/renar-v1.0-draft-ru.pdf" class="text-slate-400 underline hover:text-emerald-300">PDF · Полный архив</a>
+        <a href="/renar-agent-ru.md" class="text-emerald-300 underline hover:text-emerald-200">MD · Стандарт для агента (1 файл)</a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 mt-10 text-xs text-slate-400">
+        <div>v1.0-draft &middot; 31.05.2026</div>
+        <div>15 нормативных глав &middot; 11 практических руководств &middot; 11 справочников</div>
+        <div>CC BY-SA 4.0</div>
+        <div>RU (EN планируется)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6 text-center">Что такое RENAR</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-6">
+        RENAR — <strong>самостоятельный нормативный стандарт и методология</strong> для управления требованиями, спецификациями и контрольными примерами в проектах, где реализацию выполняют AI-агенты. Правила сформулированы <strong>независимо от конкретного хранилища</strong> (substrate): одни и те же нормы применимы на системах контроля версий (git, Mercurial, SVN) или на хранилищах документов — если поддерживаются возможности V1–V6.
+      </p>
+      <p class="text-lg text-slate-700 leading-relaxed mb-6">
+        RENAR можно применять <strong>независимо</strong> в любой организации, которой нужна структурированная инженерия требований. Он совместим с <a href="https://senar.tech" class="text-emerald-700 underline hover:text-emerald-900">SENAR</a>: оба стандарта используют общий словарь шлюзов качества и одни и те же пять ценностей.
+      </p>
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Отношение к SENAR — <em>равноправное дополнение</em>, как ISO 29148 дополняет ISO/IEC 12207: независимые документы, которые хорошо сочетаются.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Ключевые концепции</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Иерархия BR → SR → TR</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Три уровня: <strong>BR</strong> (бизнес — кто, что, зачем) → <strong>SR</strong> (система — что делает) → <strong>TR</strong> (задача — цель и критерии приёмки в трекере, не файл).
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Артефакт ADAPT</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Двусторонняя адаптация между <em>неизменяемым ТЗ</em> и BR/SR/SPEC: прямая интерпретация (forward) + обратные находки (backward, 7 категорий) с двойной подписью.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">9 типов SPEC (закрытый список)</h3>
+          <p class="text-slate-600 leading-relaxed">
+            ARCH / API / DATA / INT / PROC / UI / AI / SEC / OPS — параллельная ось через <code class="text-sm bg-slate-100 px-1 rounded">constrained-by[]</code>. Новый тип — только поправкой стандарта.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Контрольные примеры (TC)</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Полноценные артефакты: парность позитивного и негативного сценария, оценка UX через VLM, типы TC привязаны к SPEC; тег <code class="text-sm bg-slate-100 px-1 rounded">[test-spec-change]</code> защищает от подгонки тестов.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Возможности хранилища V1–V6</h3>
+          <p class="text-slate-600 leading-relaxed">
+            <strong>V1</strong> неизменяемая история · <strong>V2</strong> атомарная единица изменения · <strong>V3</strong> сравнение и ревью · <strong>V4</strong> ветвление и черновики · <strong>V5</strong> закрепление версии · <strong>V6</strong> автор и метка времени.
+          </p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-400 hover:shadow-md transition">
+          <h3 class="text-xl font-bold text-slate-900 mb-3">5 уровней зрелости RENAR</h3>
+          <p class="text-slate-600 leading-relaxed">
+            RENAR-1 (Стихийный) → RENAR-2 (Зафиксированный) → RENAR-3 (Учитываемый) → RENAR-4 (Верифицируемый) → RENAR-5 (Оптимизирующий). Отдельное измерение зрелости требований в семействе SENAR.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Четыре документа</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/docs/standard/" class="block p-6 bg-white border-2 border-emerald-400 rounded-lg hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Стандарт</h3>
+          <p class="text-sm text-slate-500 mb-3">Нормативная спецификация</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>15 глав (00–14)</li>
+            <li>ОБЯЗАН / РЕКОМЕНДУЕТСЯ / ДОПУСКАЕТСЯ</li>
+            <li>BR/SR/TR + 9 SPEC + V1–V6</li>
+            <li>4 шлюза качества (QG)</li>
+            <li>RENAR-1..5 зрелость</li>
+          </ul>
+        </a>
+        <a href="/docs/guide/" class="block p-6 bg-white border border-slate-200 rounded-lg hover:border-emerald-400 hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Руководство</h3>
+          <p class="text-sm text-slate-500 mb-3">Практическое применение</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>Быстрый старт (30 мин)</li>
+            <li>Сквозной пример</li>
+            <li>Переход с текущей практики</li>
+            <li>Библиотека примеров</li>
+            <li>Миграция на v1.0-draft</li>
+          </ul>
+        </a>
+        <a href="/docs/reference/" class="block p-6 bg-white border border-slate-200 rounded-lg hover:border-emerald-400 hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Справочник</h3>
+          <p class="text-sm text-slate-500 mb-3">Глоссарий и схемы</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>Канонические термины</li>
+            <li>JSON-схемы артефактов</li>
+            <li>Реестр AI-рисков</li>
+            <li>Матрица ISO 29148</li>
+            <li>Набор самооценки соответствия</li>
+          </ul>
+        </a>
+        <a href="/docs/core/" class="block p-6 bg-white border border-slate-200 rounded-lg hover:border-emerald-400 hover:shadow-md transition group">
+          <h3 class="font-bold text-lg text-slate-900 mb-2 group-hover:text-emerald-700">Ядро</h3>
+          <p class="text-sm text-slate-500 mb-3">Мягкое введение</p>
+          <ul class="text-xs text-slate-500 space-y-1">
+            <li>Однодокументное</li>
+            <li>Для первого знакомства</li>
+            <li>Без всех формальностей</li>
+          </ul>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Эталонная реализация: TAUSIK</h2>
+      <p class="text-slate-300 leading-relaxed mb-6">
+        <a href="https://github.com/Kibertum/tausik-core" class="text-emerald-400 underline hover:text-emerald-300">TAUSIK</a>
+        — фреймворк с открытым исходным кодом, применяющий правила SENAR (и при расширении — RENAR).
+        RENAR остаётся самостоятельным стандартом; TAUSIK — одна из возможных сред исполнения, не часть нормативного текста.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-slate-900 mb-4">Начните с того, что подходит</h2>
+      <p class="text-slate-600 mb-10 text-lg">
+        Откройте ядро для мягкого введения или перейдите сразу к полному стандарту, если знакомы с SENAR.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center mb-8">
+        <a href="/docs/core/" class="px-8 py-3 bg-emerald-500 text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition text-lg">
+          Начать с ядра
+        </a>
+        <a href="/docs/standard/" class="px-6 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-100 transition">
+          Полный стандарт
+        </a>
+      </div>
+      <p class="text-xs text-slate-500">
+        RENAR v1.0-draft &middot; CC BY-SA 4.0 &middot; Нормативный язык по <a href="https://www.rfc-editor.org/rfc/rfc2119" class="underline hover:text-slate-700">RFC 2119</a> (RU modals, Style Guide §2)
+      </p>
+    </div>
+  </section>
+</Layout>

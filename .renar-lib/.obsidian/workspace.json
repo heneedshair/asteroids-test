@@ -1,0 +1,199 @@
+{
+  "main": {
+    "id": "b292e8c59753caa0",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b33b72cfea96254",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0f0f2c3b433fdfcb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "guide/00-quickstart.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "00-quickstart"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d61d523a9fd116f0",
+    "type": "split",
+    "children": [
+      {
+        "id": "415eb704fe3ba317",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "71baac014eb08a12",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5f06970ab76dbcc4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "eb1b3455fe350845",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "78e1a4896750cf6e",
+    "type": "split",
+    "children": [
+      {
+        "id": "6d53bf05f5e05291",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "579df72a246e30cf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "docs/RENAR-v1.0-draft-ru-guide.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for RENAR-v1.0-draft-ru-guide"
+            }
+          },
+          {
+            "id": "d062b03e740f1cc8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "docs/RENAR-v1.0-draft-ru-guide.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from RENAR-v1.0-draft-ru-guide"
+            }
+          },
+          {
+            "id": "3a19db3e13991e00",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5ffa4602773b5c47",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "b594267ab46bb83d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "docs/RENAR-v1.0-draft-ru-guide.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of RENAR-v1.0-draft-ru-guide"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "0f0f2c3b433fdfcb",
+  "lastOpenFiles": [
+    "README.ru.md",
+    "docs/RENAR-v1.0-draft-ru-guide.pdf",
+    "docs/RENAR-v1.0-draft-ru-reference.pdf",
+    "docs/RENAR-v1.0-draft-en-standard.pdf",
+    "docs/README.md",
+    "RENAR-AGENT-RU.md",
+    "RENAR-AGENT-EN.md",
+    "guide/README.md",
+    "standard/en/README.md",
+    "standard/03-terms.md"
+  ]
+}

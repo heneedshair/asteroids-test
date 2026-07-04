@@ -1,0 +1,38 @@
+# TAUSIK runtime (db, venv, rag index, logs)
+.tausik/
+
+# Per-project ephemeral state (session metrics, claude-project caches)
+.claude-project/
+.claude/.claude-project/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Environment / secrets
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# Node modules (root — md-to-pdf for PDF pipeline)
+node_modules/
+
+# Astro site build artifacts
+site/dist/
+site/node_modules/
+site/.astro/
+
+# MkDocs site-docs build artifacts
+site-docs/.venv/
+site-docs/build/
+
+# IDE
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json

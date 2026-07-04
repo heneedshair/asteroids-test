@@ -1,0 +1,209 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="RENAR Principles — overview of the requirements engineering standard"
+  description="Key RENAR principles: five values, the BR/SR/TR hierarchy, ADAPT, 9 SPEC types, V1–V6, quality gates, and the RENAR-1..5 maturity levels."
+>
+  <section class="bg-slate-900 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-3">Principles Overview</div>
+      <h1 class="text-4xl font-extrabold mb-4 tracking-tight">RENAR Principles</h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Nine ideas the standard is built on. This is not the normative text — it's an introduction. Next: the <a href="/renar-v1.0-draft-en-standard.pdf" class="text-emerald-300 underline hover:text-emerald-200">full standard</a> or the <a href="/renar-v1.0-draft-en.pdf" class="text-emerald-300 underline hover:text-emerald-200">Core</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-8 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-3">Contents</div>
+      <div class="grid md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        <a href="#values" class="text-slate-700 hover:text-emerald-700 transition">1. Five Values</a>
+        <a href="#hierarchy" class="text-slate-700 hover:text-emerald-700 transition">2. BR → SR → TR Hierarchy</a>
+        <a href="#adapt" class="text-slate-700 hover:text-emerald-700 transition">3. ADAPT — Two-Way Adaptation</a>
+        <a href="#specs" class="text-slate-700 hover:text-emerald-700 transition">4. 9 SPEC Types</a>
+        <a href="#tc" class="text-slate-700 hover:text-emerald-700 transition">5. Test Cases (TC)</a>
+        <a href="#substrate" class="text-slate-700 hover:text-emerald-700 transition">6. Substrate and V1–V6</a>
+        <a href="#gates" class="text-slate-700 hover:text-emerald-700 transition">7. Quality Gates QG-0..2</a>
+        <a href="#maturity" class="text-slate-700 hover:text-emerald-700 transition">8. Maturity RENAR-1..5</a>
+        <a href="#senar" class="text-slate-700 hover:text-emerald-700 transition">9. Relationship to SENAR</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="values" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">1. Five Values</h2>
+      <p class="text-slate-600 mb-8">The same as SENAR's — the RENAR methodology is built on them.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Requirements as the Source of Truth</div>
+          <div class="text-sm text-slate-600">Implementation is subordinate to requirements. Artifacts live in the substrate; the TZ is an immutable input.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Traceability over Speed</div>
+          <div class="text-sm text-slate-600">The chain TZ → BR → SR → TR → TC → code. Speed without traceability is technical debt.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Closed-List Policy</div>
+          <div class="text-sm text-slate-600">New SPEC types, gates, and lifecycle states — only through a standard amendment. Protection against drift.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Accounting for AI in Design</div>
+          <div class="text-sm text-slate-600">Metrics (Hallucination Rate, Multi-model Disagreement) and the AI risk register are normative elements.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4 md:col-span-2">
+          <div class="font-bold text-slate-900 mb-1">Substrate Independence</div>
+          <div class="text-sm text-slate-600">Rules via capabilities V1–V6, not a specific product. One standard for VCS and document stores.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hierarchy" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">2. BR → SR → TR Hierarchy</h2>
+      <p class="text-slate-600 mb-8">Three levels of requirements — each with its own question and audience.</p>
+      <div class="space-y-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-6">
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-2xl font-bold text-emerald-600 font-mono">BR</div>
+            <div class="text-lg font-bold text-slate-900">Business Requirement</div>
+          </div>
+          <p class="text-slate-700 mb-2"><strong>Who, what, why.</strong> Business goals, constraints, KPIs. Audience — stakeholders and the client.</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg p-6">
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-2xl font-bold text-emerald-600 font-mono">SR</div>
+            <div class="text-lg font-bold text-slate-900">System Requirement</div>
+          </div>
+          <p class="text-slate-700 mb-2"><strong>What the system does.</strong> Functional and non-functional requirements. Audience — architects and developers.</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg p-6">
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-2xl font-bold text-emerald-600 font-mono">TR</div>
+            <div class="text-lg font-bold text-slate-900">Task Requirement</div>
+          </div>
+          <p class="text-slate-700 mb-2"><strong>What the implementer does.</strong> Goal and acceptance criteria in the tracker (Jira, Linear, GitLab Issues), not as a file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="adapt" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">3. ADAPT — Two-Way Adaptation</h2>
+      <p class="text-slate-600 mb-8">When an immutable TZ meets the reality of implementation.</p>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4 text-slate-700">
+        <p><strong class="text-slate-900">Forward interpretation:</strong> TZ + context → BR / SR / SPEC.</p>
+        <p><strong class="text-slate-900">Backward findings (7 categories):</strong> contradictions, gaps, risks — returned to the client.</p>
+        <p><strong class="text-slate-900">Dual signature</strong> by client + architect records the agreed interpretation. The TZ stays immutable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="specs" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">4. 9 SPEC Types <span class="text-base font-normal text-slate-500">(closed list)</span></h2>
+      <p class="text-slate-600 mb-8">A parallel axis to requirements via <code class="bg-slate-100 px-1 rounded text-sm">constrained-by[]</code>.</p>
+      <div class="grid md:grid-cols-3 gap-3 text-sm">
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">ARCH</div><div class="text-slate-600">Architecture, components, flows</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">API</div><div class="text-slate-600">Interface contracts</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">DATA</div><div class="text-slate-600">Data model, migrations</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">INT</div><div class="text-slate-600">Integrations</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">PROC</div><div class="text-slate-600">Business processes</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">UI</div><div class="text-slate-600">Interface, UX criteria</div></div>
+        <div class="bg-white border-2 border-emerald-400 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">AI</div><div class="text-slate-600">AI components, eval, fallback</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">SEC</div><div class="text-slate-600">Security, threat model</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">OPS</div><div class="text-slate-600">Deployment, monitoring, incidents</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tc" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">5. Test Cases (TC)</h2>
+      <p class="text-slate-600 mb-8">Not a byproduct of code, but a normative artifact on par with BR/SR.</p>
+      <ul class="space-y-3 text-slate-700">
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>Paired scenarios:</strong> positive and negative for every TC.</div></li>
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>VLM for UX:</strong> visual criteria via a vision-language model.</div></li>
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>Types by SPEC:</strong> TC-API, TC-AI, TC-SEC, and others.</div></li>
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>Tag <code class="bg-slate-100 px-1 rounded text-sm">[test-spec-change]</code>:</strong> an explicit marker for a TC change.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="substrate" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">6. Substrate and V1–V6</h2>
+      <p class="text-slate-600 mb-8">One standard — any storage with six capabilities (see <a href="/renar-v1.0-draft-en-standard.pdf" class="text-emerald-700 underline">chapter 3</a>).</p>
+      <div class="grid md:grid-cols-2 gap-3 text-sm">
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V1</div><div class="text-slate-600">Immutable history</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V2</div><div class="text-slate-600">Atomic change unit</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V3</div><div class="text-slate-600">Diff & review</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V4</div><div class="text-slate-600">Branching and drafts (WIP)</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V5</div><div class="text-slate-600">Version pin</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V6</div><div class="text-slate-600">Author + timestamp</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gates" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">7. Quality Gates QG-0..2</h2>
+      <p class="text-slate-600 mb-8">Lifecycle checkpoints before moving on.</p>
+      <div class="space-y-3">
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold font-mono text-slate-900 mb-1">QG-0 — approval gate</div>
+          <div class="text-sm text-slate-600">BR/SR/SPEC/TR with goal and acceptance criteria, approved by the architect.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold font-mono text-slate-900 mb-1">QG-1 — check-implementation gate</div>
+          <div class="text-sm text-slate-600">For TC: the check implementation is ready (only TC has QG-1).</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold font-mono text-slate-900 mb-1">QG-2 — verification gate</div>
+          <div class="text-sm text-slate-600">Mandatory tests passed, evidence recorded, criteria marked verified.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="maturity" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">8. Maturity RENAR-1..5</h2>
+      <p class="text-slate-600 mb-8">Five maturity levels for requirements management (see <a href="/renar-v1.0-draft-en-standard.pdf" class="text-emerald-700 underline">chapter 11</a>).</p>
+      <div class="space-y-2 text-sm">
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-1</div><div><strong>Ad-hoc</strong> — a substrate exists, schema is minimal</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-2</div><div><strong>Documented</strong> — frontmatter, TZ fixed</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-3</div><div><strong>Tracked</strong> — full schema, lifecycle, delta-ADAPT</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-4</div><div><strong>Verified</strong> — pos/neg, QG-2, ai-provenance</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-5</div><div><strong>Optimized</strong> — adversarial critic, knowledge graph, metrics</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="senar" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">9. Relationship to SENAR</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-4">
+        <a href="https://senar.tech" class="text-emerald-700 underline">SENAR</a> is <strong>how</strong> to do AI-native development. RENAR is <strong>what</strong> to do: which requirements, in what form, with what relationships.
+      </p>
+      <p class="text-lg text-slate-700 leading-relaxed">
+        You can apply RENAR without SENAR or vice versa; together they give full coverage of AI-native development.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Ready to dive in?</h2>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/renar-v1.0-draft-en-standard.pdf" class="px-8 py-3 bg-emerald-500 text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition">Full Standard</a>
+        <a href="/renar-v1.0-draft-en.pdf" class="px-6 py-3 border border-emerald-400 text-emerald-200 rounded-lg hover:bg-slate-800 transition">Core — gentle introduction</a>
+      </div>
+    </div>
+  </section>
+</Layout>

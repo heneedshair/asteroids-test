@@ -1,0 +1,43 @@
+# cross-ref-baseline.log — RU corpus integrity
+# Generated: 2026-05-22
+# Command: node scripts/check-md-links.js
+
+## Internal file links
+files_scanned: 40
+broken_links: 0
+status: PASS
+
+## Frontmatter validation
+files_checked: 36
+failed: 0
+status: PASS
+
+## Style guide (reference/06)
+files_checked: 36
+findings: 0 (after WC-02 batch fixes)
+status: PASS
+
+## MkDocs nav (reference/)
+entries: 01-glossary .. 09-pedagogical-density
+status: PASS (manual verify 2026-05-22)
+
+## Closed lists (standard/01 §1.7.5)
+lists_indexed: 16
+orphan_entries: 0
+status: PASS (note in §1.7.5)
+
+## MkDocs build
+# Command: python -m mkdocs build -f mkdocs.yml
+# Result: 2026-05-22 — built in ~4s, exit 0
+# Warnings: ../README.md / CHANGELOG.md outside docs_dir (expected); minor anchor mismatches (pre-existing)
+status: PASS (smoke)
+
+## Schema examples (reference/02 vs corpus YAML fences)
+# Command: node scripts/validate-schema-examples.js
+# Result: 2026-05-22 — 36 files, 0 violations
+status: PASS
+
+## Site parity (hero counts vs mkdocs nav)
+# Command: node scripts/check-site-parity.js
+# Result: see latest run
+status: PASS

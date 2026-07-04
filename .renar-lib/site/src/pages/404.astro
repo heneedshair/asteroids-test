@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 — Страница не найдена · RENAR" description="Запрошенная страница не существует.">
+  <section class="max-w-2xl mx-auto px-4 py-24 text-center">
+    <p class="text-[8rem] sm:text-[10rem] font-extrabold leading-none text-slate-200 select-none">404</p>
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 -mt-6 mb-3">
+      Страница не найдена
+    </h1>
+    <p class="text-slate-500 mb-10">
+      Возможно, документ переехал в новую структуру или находится в подготовке.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/ru/" class="px-6 py-2.5 bg-emerald-500 text-slate-900 rounded-lg hover:bg-emerald-400 transition font-medium">
+        На главную
+      </a>
+      <a href="/ru/standard/" class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition font-medium">
+        Стандарт
+      </a>
+      <a href="/ru/guide/" class="px-6 py-2.5 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition font-medium">
+        Руководство
+      </a>
+    </div>
+  </section>
+</Layout>

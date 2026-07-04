@@ -1,0 +1,42 @@
+# Git
+.git
+.gitignore
+.gitlab-ci.yml
+.gitmodules
+
+# TAUSIK / Claude tooling (dev-only, not needed in image)
+.claude
+.claude-project
+.tausik
+.tausik-lib
+.mcp.json
+CLAUDE.md
+
+# Python / venv
+.venv
+__pycache__
+*.py[cod]
+.rag
+
+# Node
+node_modules
+site/node_modules
+site/dist
+site/.astro
+
+# MkDocs build artifacts (rebuilt fresh in stage 2)
+site-docs/.venv
+site-docs/build
+
+# Root markdown is excluded EXCEPT specs/guides bundled with the site
+*.md
+!standard/**/*.md
+!guide/**/*.md
+!reference/**/*.md
+!core/**/*.md
+
+# Secrets
+*.pem
+*.key
+.env
+.env.*

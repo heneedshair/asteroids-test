@@ -1,0 +1,209 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Принципы RENAR — обзор стандарта инженерии требований"
+  description="Ключевые принципы RENAR: пять ценностей, иерархия BR/SR/TR, ADAPT, 9 типов SPEC, V1–V6, шлюзы качества, уровни зрелости RENAR-1..5."
+>
+  <section class="bg-slate-900 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-3">Обзор принципов</div>
+      <h1 class="text-4xl font-extrabold mb-4 tracking-tight">Принципы RENAR</h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Девять идей, на которых построен стандарт. Это не нормативка — введение. Далее — <a href="/docs/standard/" class="text-emerald-300 underline hover:text-emerald-200">полный стандарт</a> или <a href="/docs/core/" class="text-emerald-300 underline hover:text-emerald-200">ядро</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-8 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-3">Содержание</div>
+      <div class="grid md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        <a href="#values" class="text-slate-700 hover:text-emerald-700 transition">1. Пять ценностей</a>
+        <a href="#hierarchy" class="text-slate-700 hover:text-emerald-700 transition">2. Иерархия BR → SR → TR</a>
+        <a href="#adapt" class="text-slate-700 hover:text-emerald-700 transition">3. ADAPT — двусторонняя адаптация</a>
+        <a href="#specs" class="text-slate-700 hover:text-emerald-700 transition">4. 9 типов SPEC</a>
+        <a href="#tc" class="text-slate-700 hover:text-emerald-700 transition">5. Контрольные примеры (TC)</a>
+        <a href="#substrate" class="text-slate-700 hover:text-emerald-700 transition">6. Хранилище и V1–V6</a>
+        <a href="#gates" class="text-slate-700 hover:text-emerald-700 transition">7. Шлюзы качества QG-0..2</a>
+        <a href="#maturity" class="text-slate-700 hover:text-emerald-700 transition">8. Зрелость RENAR-1..5</a>
+        <a href="#senar" class="text-slate-700 hover:text-emerald-700 transition">9. Отношение к SENAR</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="values" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">1. Пять ценностей</h2>
+      <p class="text-slate-600 mb-8">Те же, что у SENAR — на них построена методология RENAR.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Требования — источник истины</div>
+          <div class="text-sm text-slate-600">Реализация подчиняется требованиям. Артефакты в хранилище; ТЗ — неизменяемый вход.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Трассируемость важнее скорости</div>
+          <div class="text-sm text-slate-600">Цепочка ТЗ → BR → SR → TR → TC → код. Скорость без трассировки — техдолг.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Политика закрытого списка</div>
+          <div class="text-sm text-slate-600">Новые типы SPEC, шлюзы и состояния lifecycle — только через поправку стандарта. Защита от дрейфа.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold text-slate-900 mb-1">Учёт AI в проектировании</div>
+          <div class="text-sm text-slate-600">Метрики (Hallucination Rate, Multi-model Disagreement) и реестр AI-рисков — нормативные элементы.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4 md:col-span-2">
+          <div class="font-bold text-slate-900 mb-1">Независимость от хранилища</div>
+          <div class="text-sm text-slate-600">Правила через возможности V1–V6, а не через конкретный продукт. Один стандарт для VCS и хранилищ документов.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hierarchy" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">2. Иерархия BR → SR → TR</h2>
+      <p class="text-slate-600 mb-8">Три уровня требований — каждый со своим вопросом и аудиторией.</p>
+      <div class="space-y-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-6">
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-2xl font-bold text-emerald-600 font-mono">BR</div>
+            <div class="text-lg font-bold text-slate-900">Бизнес-требование</div>
+          </div>
+          <p class="text-slate-700 mb-2"><strong>Кто, что, зачем.</strong> Цели бизнеса, ограничения, KPI. Аудитория — стейкхолдеры и заказчик.</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg p-6">
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-2xl font-bold text-emerald-600 font-mono">SR</div>
+            <div class="text-lg font-bold text-slate-900">Требование к системе</div>
+          </div>
+          <p class="text-slate-700 mb-2"><strong>Что делает система.</strong> Функциональные и нефункциональные требования. Аудитория — архитекторы и разработчики.</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg p-6">
+          <div class="flex items-baseline gap-3 mb-2">
+            <div class="text-2xl font-bold text-emerald-600 font-mono">TR</div>
+            <div class="text-lg font-bold text-slate-900">Требование к задаче</div>
+          </div>
+          <p class="text-slate-700 mb-2"><strong>Что делает исполнитель.</strong> Цель и критерии приёмки в трекере (Jira, Linear, GitLab Issues), не как файл.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="adapt" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">3. ADAPT — двусторонняя адаптация</h2>
+      <p class="text-slate-600 mb-8">Когда неизменяемое ТЗ встречается с реальностью реализации.</p>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4 text-slate-700">
+        <p><strong class="text-slate-900">Прямая интерпретация (forward):</strong> ТЗ + контекст → BR / SR / SPEC.</p>
+        <p><strong class="text-slate-900">Обратные находки (backward, 7 категорий):</strong> противоречия, пробелы, риски — возвращаются заказчику.</p>
+        <p><strong class="text-slate-900">Двойная подпись</strong> клиент + архитектор фиксирует согласованную трактовку. ТЗ остаётся неизменяемым.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="specs" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">4. 9 типов SPEC <span class="text-base font-normal text-slate-500">(закрытый список)</span></h2>
+      <p class="text-slate-600 mb-8">Параллельная ось к требованиям через <code class="bg-slate-100 px-1 rounded text-sm">constrained-by[]</code>.</p>
+      <div class="grid md:grid-cols-3 gap-3 text-sm">
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">ARCH</div><div class="text-slate-600">Архитектура, компоненты, потоки</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">API</div><div class="text-slate-600">Контракты интерфейсов</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">DATA</div><div class="text-slate-600">Модель данных, миграции</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">INT</div><div class="text-slate-600">Интеграции</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">PROC</div><div class="text-slate-600">Бизнес-процессы</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">UI</div><div class="text-slate-600">Интерфейс, UX-критерии</div></div>
+        <div class="bg-white border-2 border-emerald-400 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">AI</div><div class="text-slate-600">AI-компоненты, eval, fallback</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">SEC</div><div class="text-slate-600">Безопасность, threat model</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">OPS</div><div class="text-slate-600">Развёртывание, мониторинг, инциденты</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tc" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">5. Контрольные примеры (TC)</h2>
+      <p class="text-slate-600 mb-8">Не побочный продукт кода, а нормативный артефакт наравне с BR/SR.</p>
+      <ul class="space-y-3 text-slate-700">
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>Парность сценариев:</strong> позитивный и негативный для каждого TC.</div></li>
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>VLM для UX:</strong> визуальные критерии через vision-language model.</div></li>
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>Типы по SPEC:</strong> TC-API, TC-AI, TC-SEC и др.</div></li>
+        <li class="flex gap-3"><span class="text-emerald-500 font-bold">→</span><div><strong>Тег <code class="bg-slate-100 px-1 rounded text-sm">[test-spec-change]</code>:</strong> явная пометка изменения TC.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="substrate" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">6. Хранилище (substrate) и V1–V6</h2>
+      <p class="text-slate-600 mb-8">Один стандарт — любое хранилище с шестью возможностями (см. <a href="/docs/standard/03-substrate-versioning/" class="text-emerald-700 underline">глава 3</a>).</p>
+      <div class="grid md:grid-cols-2 gap-3 text-sm">
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V1</div><div class="text-slate-600">Неизменяемая история</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V2</div><div class="text-slate-600">Атомарная единица изменения</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V3</div><div class="text-slate-600">Сравнение и ревью (diff & review)</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V4</div><div class="text-slate-600">Ветвление и черновики (WIP)</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V5</div><div class="text-slate-600">Закрепление версии (version pin)</div></div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4"><div class="font-mono font-bold text-emerald-700 mb-1">V6</div><div class="text-slate-600">Автор и метка времени</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gates" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">7. Шлюзы качества QG-0..2</h2>
+      <p class="text-slate-600 mb-8">Контрольные точки жизненного цикла до перехода дальше.</p>
+      <div class="space-y-3">
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold font-mono text-slate-900 mb-1">QG-0 — шлюз утверждения</div>
+          <div class="text-sm text-slate-600">BR/SR/SPEC/TR с целью и критериями приёмки, утверждены архитектором.</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold font-mono text-slate-900 mb-1">QG-1 — шлюз реализации проверки</div>
+          <div class="text-sm text-slate-600">Для TC: реализация проверки готова (только TC имеет QG-1).</div>
+        </div>
+        <div class="border-l-4 border-emerald-400 bg-slate-50 p-4">
+          <div class="font-bold font-mono text-slate-900 mb-1">QG-2 — шлюз верификации</div>
+          <div class="text-sm text-slate-600">Обязательные тесты пройдены, evidence записан, критерии отмечены verified.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="maturity" class="py-16 bg-slate-50 scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">8. Зрелость RENAR-1..5</h2>
+      <p class="text-slate-600 mb-8">Пять уровней зрелости управления требованиями (см. <a href="/docs/standard/11-maturity-model/" class="text-emerald-700 underline">глава 11</a>).</p>
+      <div class="space-y-2 text-sm">
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-1</div><div><strong>Стихийный (Ad-hoc)</strong> — хранилище есть, schema минимальна</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-2</div><div><strong>Зафиксированный (Documented)</strong> — frontmatter, ТЗ зафиксировано</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-3</div><div><strong>Учитываемый (Tracked)</strong> — полный schema, lifecycle, delta-ADAPT</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-4</div><div><strong>Верифицируемый (Verified)</strong> — pos/neg, QG-2, ai-provenance</div></div>
+        <div class="flex gap-4 bg-white border rounded p-4"><div class="font-mono font-bold text-emerald-700 w-24">RENAR-5</div><div><strong>Оптимизирующий (Optimized)</strong> — adversarial critic, knowledge graph, метрики</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="senar" class="py-16 bg-white scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2">9. Отношение к SENAR</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-4">
+        <a href="https://senar.tech" class="text-emerald-700 underline">SENAR</a> — <strong>как делать</strong> AI-нативную разработку. RENAR — <strong>что делать</strong>: какие требования, в какой форме, с какими связями.
+      </p>
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Можно применять RENAR без SENAR или наоборот; вместе — полное покрытие AI-нативной разработки.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4">Готовы погрузиться?</h2>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/docs/standard/" class="px-8 py-3 bg-emerald-500 text-slate-900 font-bold rounded-lg hover:bg-emerald-400 transition">Полный стандарт</a>
+        <a href="/docs/core/" class="px-6 py-3 border border-emerald-400 text-emerald-200 rounded-lg hover:bg-slate-800 transition">Ядро — мягкое введение</a>
+      </div>
+    </div>
+  </section>
+</Layout>
